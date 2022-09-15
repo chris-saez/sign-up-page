@@ -3,8 +3,13 @@ import { useState} from 'react';
 import heroImage01 from '../../assets/hero-image.png';
 import './sign-up-page.styles.css';
 
+import { signUpUserWithEmailAndPassword,
+         signInWithGooglePopup,
+         createUserDocumentFromAuth,
+          } from '../../utils/firebase/firebase.utils';
+
 const defaultForm = {
-    username: '',
+    displayName: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -12,12 +17,33 @@ const defaultForm = {
 
 const SignUpPage = () => {
     const [formField, setFormField] = useState(defaultForm);
+    const { displayName, email, password, confirmPassword } = formField;
 
     const userInput = (event) => { // User inputs into the form field are stored into an object
-        const input = event.target.value;
-        const name = event.target.name;
+        const { name, value } = event.target;
+        setFormField({...formField, [name]: value});
+    }
 
-        setFormField({...formField, [name]: input});
+    const submitSignUpForm = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await signUpUserWithEmailAndPassword(formField);
+            await createUserDocumentFromAuth(response);
+            resetFormFields(); 
+        } catch(error) {
+            console.log(error);
+            alert('Error creating new user. Try again');
+        }
+    }
+
+    const signUpWithGoogle = async (event) => {
+        event.preventDefault();
+        const response = await signInWithGooglePopup();
+        createUserDocumentFromAuth(response);
+    }
+
+    const resetFormFields = () => {
+        setFormField(defaultForm);
     }
 
     return(
@@ -27,16 +53,16 @@ const SignUpPage = () => {
                 <p>Browse through thousands of collections on multiple chains</p>
 
                 <form>
-                    <input required type='text' placeholder='Username' name='username' onChange={ userInput }></input>
-                    <input required type='email' placeholder='Email' name='email' onChange={ userInput }></input>
-                    <input required type='password' placeholder='Password' name='password' onChange={ userInput }></input>
-                    <input required type='password' placeholder='Confirm Password' name='confirmPassword' onChange={ userInput }></input>
-                    <button type='submit'>Sign Up</button>
+                    <input required type='text' placeholder='Username' name='displayName' onChange={ userInput } value={ displayName }></input>
+                    <input required type='email' placeholder='Email' name='email' onChange={ userInput } value={ email }></input>
+                    <input required type='password' placeholder='Password' name='password' onChange={ userInput } value={ password }></input>
+                    <input required type='password' placeholder='Confirm Password' name='confirmPassword' onChange={ userInput } value={ confirmPassword }></input>
+                    <button type='submit' onClick={ submitSignUpForm }>Sign Up</button>
                 </form>
 
                 <p>or</p>
 
-                <button>Sign up with Google</button>
+                <button onClick={ signUpWithGoogle }>Sign up with Google</button>
                 <button>Sign up with Metamask</button>
                 <p>Already signed up? Sign in here</p>
             </div>
