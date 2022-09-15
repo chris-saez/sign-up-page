@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
+
+import SignUpPage from './routes/sign-up-page/sign-up-page.component'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path='sign-up' element={ <SignUpPage /> }/>
+    </Routes>
   );
 }
 
 export default App;
+
+
+// 2 sections: hero image and sign up form
+
+// Sign up form: header, normal text, email input, password input, confirm password input, sign up button
+// Log in through Google and Log in through Metamask connection
