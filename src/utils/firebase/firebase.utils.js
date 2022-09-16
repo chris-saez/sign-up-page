@@ -69,4 +69,3 @@ export const signUpUserWithEmailAndPassword = async (newUser) => {
     
     return user;
 }
-

@@ -8,6 +8,8 @@ import { signUpUserWithEmailAndPassword,
          createUserDocumentFromAuth,
           } from '../../utils/firebase/firebase.utils';
 
+import FormInput from '../../components/form-inputs/form-inputs.component';
+
 const defaultForm = {
     displayName: '',
     email: '',
@@ -22,16 +24,26 @@ const SignUpPage = () => {
     const userInput = (event) => { // User inputs into the form field are stored into an object
         const { name, value } = event.target;
         setFormField({...formField, [name]: value});
+        console.log(value);
     }
 
     const submitSignUpForm = async (event) => {
         event.preventDefault();
+
+        if(password != confirmPassword) {
+            alert('Passwords do not match! Enter your password again');
+            return;
+        }
+
         try {
             const response = await signUpUserWithEmailAndPassword(formField);
             await createUserDocumentFromAuth(response);
             resetFormFields(); 
         } catch(error) {
             console.log(error);
+            if(error.code == 'auth/email-already-in-use'){
+                alert('Email is already in use. Try logging in instead');
+            }
             alert('Error creating new user. Try again');
         }
     }
@@ -53,10 +65,45 @@ const SignUpPage = () => {
                 <p>Browse through thousands of collections on multiple chains</p>
 
                 <form>
-                    <input required type='text' placeholder='Username' name='displayName' onChange={ userInput } value={ displayName }></input>
-                    <input required type='email' placeholder='Email' name='email' onChange={ userInput } value={ email }></input>
-                    <input required type='password' placeholder='Password' name='password' onChange={ userInput } value={ password }></input>
-                    <input required type='password' placeholder='Confirm Password' name='confirmPassword' onChange={ userInput } value={ confirmPassword }></input>
+                    <FormInput inputOptions={{
+                        required:true, 
+                        type:'text', 
+                        placeholder:'Username', 
+                        name:'displayName', 
+                        onChange:userInput,
+                        value:displayName,
+                    }}
+                    />
+
+                    <FormInput inputOptions={{
+                        required:true, 
+                        type:'email', 
+                        placeholder:'Email', 
+                        name:'email', 
+                        onChange:userInput,
+                        value:email,
+                    }}
+                    />
+                    <FormInput inputOptions={{
+                        required:true, 
+                        type:'password', 
+                        placeholder:'Password', 
+                        name:'password', 
+                        onChange:userInput,
+                        value:password,
+                    }}
+                    />
+
+                    <FormInput inputOptions={{
+                        required:true, 
+                        type:'password', 
+                        placeholder:'Confirm Password', 
+                        name:'confirmPassword', 
+                        onChange:userInput,
+                        value:confirmPassword,
+                    }}
+                    />
+
                     <button type='submit' onClick={ submitSignUpForm }>Sign Up</button>
                 </form>
 
