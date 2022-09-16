@@ -1,4 +1,5 @@
 import { useState} from 'react';
+import { Route, Routes, Link} from'react-router-dom';
 
 import heroImage01 from '../../assets/hero-image.png';
 import './sign-up-page.styles.css';
@@ -9,6 +10,7 @@ import { signUpUserWithEmailAndPassword,
           } from '../../utils/firebase/firebase.utils';
 
 import FormInput from '../../components/form-inputs/form-inputs.component';
+import Button from '../../components/button/button.component';
 
 const defaultForm = {
     displayName: '',
@@ -64,7 +66,7 @@ const SignUpPage = () => {
                 <h2>Sign Up</h2>
                 <p>Browse through thousands of collections on multiple chains</p>
 
-                <form>
+                <form onSubmit={submitSignUpForm}>
                     <FormInput inputOptions={{
                         required:true, 
                         type:'text', 
@@ -104,14 +106,15 @@ const SignUpPage = () => {
                     }}
                     />
 
-                    <button type='submit' onClick={ submitSignUpForm }>Sign Up</button>
+                    <Button buttonStyle={'gradient'}>Sign up</Button>
                 </form>
 
                 <p>or</p>
 
-                <button onClick={ signUpWithGoogle }>Sign up with Google</button>
-                <button>Sign up with Metamask</button>
-                <p>Already signed up? Sign in here</p>
+                <Button buttonStyle={'google'} onClick={signUpWithGoogle}>Sign up with Google</Button>
+                <Button buttonStyle={'metamask'}>Sign up with Metamask</Button>
+
+                <p>Already signed up? {<Link className='gradient-letters' to={'/sign-in'}> Sign in here </Link>}</p>
             </div>
 
             <img src={heroImage01}/>
