@@ -63,8 +63,8 @@ const SignUpPage = () => {
     return(
         <div className='sign-up-page-container'>
             <div className='sign-up-form-container'>
-                <h2>Sign Up</h2>
-                <p>Browse through thousands of collections on multiple chains</p>
+                <h2 className='sign-header'>Sign Up</h2>
+                <p className='sign-description'>Browse through thousands of collections on multiple chains</p>
 
                 <form onSubmit={submitSignUpForm}>
                     <FormInput inputOptions={{
@@ -106,22 +106,26 @@ const SignUpPage = () => {
                     }}
                     />
 
-                    <Button buttonStyle={'gradient'}>Sign up</Button>
+                    <Button buttonStyle={'gradient'} className='buttonComponent'>Sign up</Button>
                 </form>
-
-                <p>or</p>
+                
+                <p className='or-break-line'>
+                    <span>or</span>
+                </p>
 
                 <Button buttonStyle={'google'} onClick={signUpWithGoogle}>Sign up with Google</Button>
                 <Button buttonStyle={'metamask'}>Sign up with Metamask</Button>
 
-                <p>Already signed up? 
+                <p className='already-auth-link'>Already signed up? 
                     {<Link className='gradient-letters' to={'/sign-in'}> 
                         Sign in here 
                     </Link>}
                 </p>
             </div>
-
-            <img className='hero-image'src={heroImage01}/>
+            
+            <div className='hero-image-container'>
+                <img className='hero-image'src={heroImage01}/>
+            </div>
         </div>
     )
 };

@@ -1,4 +1,112 @@
 .sign-up-page-container {
     display: flex;
     justify-content: space-between;
+    height: 100%;
 }
+
+.sign-up-form-container {
+    padding: 88px 50px;
+    width: 35%;
+    margin: auto 0;
+}
+
+.hero-image-container {
+    display: flex;
+    width: 65%;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+form {
+    width: 100%;
+}
+
+.sign-header {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 40px;
+    margin-bottom: 16px;
+}
+
+.sign-description {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #8E8F8F;
+    margin-bottom: 32px;
+}
+
+.or-break-line {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #8E8F8F;
+    line-height: .1em;
+    color: #8E8F8F;
+
+    font-weight: 400;
+    font-size: 20px;
+
+    margin-bottom: 32px;
+    margin-top: 26px;
+}
+
+.or-break-line span {
+    background: white;
+    padding: 0px 16px;
+}
+
+.already-auth-link,
+.gradient-letters {
+    text-align: center;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 24px;
+}
+.already-auth-link {
+    font-weight: 400;
+    color: #8E8F8F;
+    margin-top: 32px;
+}
+
+.gradient-letters {
+    margin-left: 4px;
+    font-weight: 700;
+    background: linear-gradient(90.98deg, #7F7FD5 -1.36%, #86A8E7 32.44%, #91EAE4 107.37%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    border-bottom: 3px solid #86A8E7;
+    position: relative;
+}
+
+.gradient-letters:before {
+    content: '';
+    background-color: white;
+    position: absolute;
+    top: 1.3em;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+
+    transition: left .2s ease-in-out;
+}
+
+.gradient-letters:hover:before {
+    content: '';
+    background-color: white;
+    position: absolute;
+    top: 1.3em;
+    left: 100%;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+}
+
+    

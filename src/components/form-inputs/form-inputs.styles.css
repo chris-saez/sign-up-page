@@ -1,0 +1,31 @@
+.form-input-container,
+.form-input {
+    width: 100%;
+}
+
+.form-input {
+    height: 56px;
+    background-color: #F2F4F7;
+    border: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #8E8F8F;
+    border-radius: 4px;
+
+    padding-left: 16px;
+}
+
+.form-input::placeholder {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 24px;
+    color: #8e8f8fa2;
+}
+
+.form-input-container {
+    margin-bottom: 32px;
+    padding: 0;
+}

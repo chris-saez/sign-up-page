@@ -1,3 +1,5 @@
+import './form-inputs.styles.css';
+
 const FormInput = ( {inputOptions} ) => {
     return (
         <div className='form-input-container'>
