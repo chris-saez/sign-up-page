@@ -1,5 +1,5 @@
 import { useState} from 'react';
-import { Route, Routes, Link} from'react-router-dom';
+import {Link} from'react-router-dom';
 
 import heroImage01 from '../../assets/hero-image.png';
 import './sign-up-page.styles.css';
@@ -114,10 +114,14 @@ const SignUpPage = () => {
                 <Button buttonStyle={'google'} onClick={signUpWithGoogle}>Sign up with Google</Button>
                 <Button buttonStyle={'metamask'}>Sign up with Metamask</Button>
 
-                <p>Already signed up? {<Link className='gradient-letters' to={'/sign-in'}> Sign in here </Link>}</p>
+                <p>Already signed up? 
+                    {<Link className='gradient-letters' to={'/sign-in'}> 
+                        Sign in here 
+                    </Link>}
+                </p>
             </div>
 
-            <img src={heroImage01}/>
+            <img className='hero-image'src={heroImage01}/>
         </div>
     )
 };
